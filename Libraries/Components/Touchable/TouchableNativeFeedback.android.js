@@ -12,6 +12,7 @@
 
 var PropTypes = require('react/lib/ReactPropTypes');
 var React = require('React');
+var Animated = require('react-native').Animated;
 var ReactNative = require('react/lib/ReactNative');
 var Touchable = require('Touchable');
 var TouchableWithoutFeedback = require('TouchableWithoutFeedback');
@@ -231,6 +232,10 @@ var TouchableNativeFeedback = React.createClass({
       onResponderRelease: this.touchableHandleResponderRelease,
       onResponderTerminate: this.touchableHandleResponderTerminate,
     };
+
+    if (child.type.name === 'AnimatedComponent') {
+      TouchableView = Animated.createAnimatedComponent(TouchableView);
+    }
     return <TouchableView {...childProps}/>;
   }
 });
